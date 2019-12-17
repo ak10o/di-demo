@@ -1,6 +1,7 @@
 package com.mbrdi.didemo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import com.mbrdi.didemo.services.GreetingService;
@@ -13,7 +14,7 @@ public class ConstructorInjectedController {
 
 	// this is used to ask the spring to inject the appropriate instance at runtime
 	@Autowired
-	public ConstructorInjectedController(GreetingService greetingService) {
+	public ConstructorInjectedController(@Qualifier("constructorGreetingService") GreetingService greetingService) {
 		this.greetingService = greetingService;
 	}
 	
