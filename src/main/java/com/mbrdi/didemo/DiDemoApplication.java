@@ -4,7 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.mbrdi.didemo.controllers.ConstructorInjectedController;
 import com.mbrdi.didemo.controllers.MyController;
+import com.mbrdi.didemo.controllers.PropertyInjectedController;
+import com.mbrdi.didemo.controllers.SetterInjectedController;
 
 @SpringBootApplication
 public class DiDemoApplication {
@@ -16,6 +19,9 @@ public class DiDemoApplication {
 		
 		MyController controller = (MyController)ctx.getBean("myController");
 		System.out.println(controller.hello());
+		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
+		System.out.println(ctx.getBean(SetterInjectedController.class).sayHello());
+		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
 	}
 
 }
