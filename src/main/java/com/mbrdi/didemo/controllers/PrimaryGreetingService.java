@@ -9,7 +9,7 @@ import com.mbrdi.didemo.services.GreetingService;
 @Service
 @Primary
 // If we don't write the Profile then it will throw an error saying NoUniqueBeanDefinitionException
-@Profile("en")
+@Profile({"en","default"})
 public class PrimaryGreetingService implements GreetingService {
 
 	@Override
