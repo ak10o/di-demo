@@ -10,6 +10,8 @@ import com.mbrdi.didemo.controllers.MyController;
 public class DiDemoApplication {
 
 	public static void main(String[] args) {
+		
+		//getting the handle of Application context.
 		ApplicationContext ctx = SpringApplication.run(DiDemoApplication.class, args);
 		
 		MyController controller = (MyController)ctx.getBean("myController");
