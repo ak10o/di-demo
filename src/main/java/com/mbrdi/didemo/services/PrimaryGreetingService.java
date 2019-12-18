@@ -1,10 +1,8 @@
-package com.mbrdi.didemo.controllers;
+package com.mbrdi.didemo.services;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-
-import com.mbrdi.didemo.services.GreetingService;
 
 @Service
 @Primary
@@ -12,9 +10,16 @@ import com.mbrdi.didemo.services.GreetingService;
 @Profile({"en","default"})
 public class PrimaryGreetingService implements GreetingService {
 
+	private GreetingRepository greetingRepository;
+	
+	public PrimaryGreetingService(GreetingRepository greetingRepository) {
+		super();
+		this.greetingRepository = greetingRepository;
+	}
+
 	@Override
 	public String sayGreeting() {
-		return "Injected by PrimaryGreetingService";
+		return greetingRepository.getEnglishGreeting();
 	}
 
 }
