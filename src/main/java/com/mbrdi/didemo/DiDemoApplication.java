@@ -8,6 +8,7 @@ import com.mbrdi.didemo.controllers.ConstructorInjectedController;
 import com.mbrdi.didemo.controllers.MyController;
 import com.mbrdi.didemo.controllers.PropertyInjectedController;
 import com.mbrdi.didemo.controllers.SetterInjectedController;
+import com.mbrdi.didemo.externalization.FakeDataSource;
 
 @SpringBootApplication
 public class DiDemoApplication {
@@ -22,6 +23,9 @@ public class DiDemoApplication {
 		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
 		System.out.println(ctx.getBean(SetterInjectedController.class).sayHello());
 		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
+		
+		FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
+		System.out.println("externalized properties " + fakeDataSource.getUserName());
 	}
 
 }
