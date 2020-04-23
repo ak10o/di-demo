@@ -9,6 +9,7 @@ import com.mbrdi.didemo.controllers.MyController;
 import com.mbrdi.didemo.controllers.PropertyInjectedController;
 import com.mbrdi.didemo.controllers.SetterInjectedController;
 import com.mbrdi.didemo.externalization.FakeDataSource;
+import com.mbrdi.didemo.externalization.FakeJmsBroker;
 
 @SpringBootApplication
 public class DiDemoApplication {
@@ -26,6 +27,9 @@ public class DiDemoApplication {
 		
 		FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
 		System.out.println("externalized properties " + fakeDataSource.getPassword());
+		
+		FakeJmsBroker fakeJmsBroker = (FakeJmsBroker) ctx.getBean(FakeJmsBroker.class);
+		System.out.println("jms broker properties " + fakeJmsBroker.getUserName());
 	}
 
 }
