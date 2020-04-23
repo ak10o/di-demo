@@ -25,7 +25,7 @@ public class DiDemoApplication {
 		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
 		
 		FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
-		System.out.println("externalized properties " + fakeDataSource.getUserName());
+		System.out.println("externalized properties " + fakeDataSource.getPassword());
 	}
 
 }

@@ -1,10 +1,12 @@
 package com.mbrdi.didemo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
 
 import com.mbrdi.didemo.externalization.FakeDataSource;
 
@@ -12,6 +14,9 @@ import com.mbrdi.didemo.externalization.FakeDataSource;
 @PropertySource("datasource.properties")
 public class PropertyConfiguration {
 
+	@Autowired
+	Environment env;
+	
 	@Value("${guru.username}")
 	String user;
 	
@@ -30,7 +35,11 @@ public class PropertyConfiguration {
 	public FakeDataSource fakeDataSource() {
 		FakeDataSource fakeDataSource = new FakeDataSource();
 		fakeDataSource.setUserName(user);
-		fakeDataSource.setPassword(password);
+		if (env.getProperty("pwd").isEmpty()) {
+			fakeDataSource.setPassword(password);
+		} else {
+			fakeDataSource.setPassword(env.getProperty("pwd"));
+		}
 		fakeDataSource.setDburl(url);
 		return fakeDataSource;
 	}
